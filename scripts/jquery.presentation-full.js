@@ -85,8 +85,15 @@
         
         //Add in the pager
         var navPager = '<ol class="'+$presentation.options.pagerClass+'">';
-        for(var i = 1; i < $presentation.numSlides+1; i++) {
-          navPager += '<li><a href="#'+i+'">'+i+'</a></li>';
+		for(var i = 1; i < $presentation.numSlides+1; i++) {
+		  var slideAttributes= $presentation.slides[i-1].attributes;
+		  slideTitle ="";
+			for(var j=0;j<slideAttributes.length;j++) {
+				if (slideAttributes[j].nodeName =='title'){
+					slideTitle = slideAttributes[j].nodeValue;
+				} 
+			}
+         navPager += '<li><a href="#'+i+'">'+slideTitle+'</a></li>';
         }
         $presentation.append(navPager);
         
